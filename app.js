@@ -5,6 +5,8 @@ const AllRouters = require("./routes/index")
 const flash = require("express-flash")
 const session = require("express-session")
 const { notFoundError, errorHandler } = require("./utils/error-handling")
+const passport = require("passport")
+const { passportInit } = require("./passport.config")
 
 const app = express()
 
@@ -30,9 +32,12 @@ app.use(session({
 }))
 
 // setup passport
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Routers
-app.use(AllRouters)
+app.use(AllRouters(passport))
 app.use(notFoundError)
 app.use(errorHandler)
 

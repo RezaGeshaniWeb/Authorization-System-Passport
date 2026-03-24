@@ -24,7 +24,7 @@ function passportInit(passport) {
     })
 
     const deserializeUser = passport.deserializeUser(async (id, done) => {
-        const user = await user.findOne({ _id: id })
+        const user = await userModel.findOne({ _id: id })
         if (!user) return done(null, false, { message: 'not found user account' })
         return done(null, user)
     })
