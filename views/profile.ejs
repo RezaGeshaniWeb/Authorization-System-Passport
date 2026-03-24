@@ -1,0 +1,29 @@
+<div>
+    <img src="" alt="">
+    <h1>Welcome to the profile page</h1>
+    <div>
+        <p>You've successfully entered the profile page</p>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">fullName</th>
+                    <th scope="col">userName</th>
+                    <th scope="col">password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row">
+                    <td><%=user.id%></td>
+                    <td><%=user.fullName%></td>
+                    <td><%=user.username%></td>
+                    <td><%=user.password.substr(0,10)+"..."%></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a href="/loguot">logout</a>
+        <a href="/">home</a>
+    </div>
+</div>
