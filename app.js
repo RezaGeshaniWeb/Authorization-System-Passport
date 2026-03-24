@@ -4,6 +4,7 @@ const { default: mongoose } = require("mongoose")
 const AllRouters = require("./routes/index")
 const flash = require("express-flash")
 const session = require("express-session")
+const { notFoundError, errorHandler } = require("./utils/error-handling")
 
 const app = express()
 
@@ -32,6 +33,8 @@ app.use(session({
 
 // Routers
 app.use(AllRouters)
+app.use(notFoundError)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3000
 
