@@ -8,11 +8,19 @@ function initRoutes(passport) {
     })
 
     router.get('/login', redirectIfIsAuth, (req, res) => {
-        res.render('login', { title: 'login' })
+        res.render('login', {
+            title: 'login', message: {
+                error: req.flash("error")
+            }
+        })
     })
 
     router.get('/register', redirectIfIsAuth, (req, res) => {
-        res.render('register', { title: 'register' })
+        res.render('register', {
+            title: 'register', message: {
+                error: req.flash("error")
+            }
+        })
     })
 
     router.get('/profile', checkAuth, (req, res) => {

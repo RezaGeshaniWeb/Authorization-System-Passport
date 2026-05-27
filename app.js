@@ -10,14 +10,13 @@ const { passportInit } = require("./passport.config")
 
 const app = express()
 
-mongoose.connect("mongodb://localhost:27017/passport-js", {}).then(() => {
-    console.log("connected to mongodb")
-})
+mongoose.connect("mongodb://localhost:27017/passport-js", {})
+    .then(() => console.log("connected to mongodb"))
+    .catch(err => console.log(err))
 
 // setup application
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(flash())
 
 // setup view engine & layout
 app.use(expressLayouts)
@@ -30,6 +29,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+app.use(flash())
 
 // setup passport
 passportInit(passport)
