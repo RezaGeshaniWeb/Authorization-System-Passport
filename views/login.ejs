@@ -2,7 +2,9 @@
     <img src="" alt="">
     <h1>Login here</h1>
     <p>
-        <%= message?.error ?? "" %>
+        <% if (message?.error?.length) { %>
+            <%= message.error[0] %>
+        <% } %>
     </p>
     <div>
         <form action="/login" method="post">

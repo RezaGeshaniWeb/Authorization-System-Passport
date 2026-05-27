@@ -19,17 +19,21 @@ function passportInit(passport) {
         passwordField: "password",
     }, authenticatedUser)
 
-    const serializeUser = passport.serializeUser((user, done) => {
+    passport.serializeUser((user, done) => {
         return done(null, user.id)
     })
 
-    const deserializeUser = passport.deserializeUser(async (id, done) => {
-        const user = await userModel.findOne({ _id: id })
-        if (!user) return done(null, false, { message: 'not found user account' })
-        return done(null, user)
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const user = await userModel.findOne({ _id: id })
+            if (!user) return done(null, false, { message: 'not found user account' })
+            return done(null, user)
+        } catch (error) {
+            return done(error)
+        }
     })
 
-    passport.use("local", localStrategy, serializeUser, deserializeUser)
+    passport.use("local", localStrategy)
 }
 
 module.exports = { passportInit }

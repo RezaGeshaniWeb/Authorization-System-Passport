@@ -1,3 +1,4 @@
+const path = require("path")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const { default: mongoose } = require("mongoose")
@@ -19,9 +20,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // setup view engine & layout
-app.use(expressLayouts)
+app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
-app.set("layout", "./layout/main.ejs")
+app.use(expressLayouts)
+app.set("layout", "layout/main")
 
 // setup session
 app.use(session({

@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const { hashSync } = require("bcrypt")
 const { redirectIfIsAuth, checkAuth } = require("../middleware/check-auth")
 const { userModel } = require("../model/user.model")
 
@@ -56,9 +57,7 @@ function initRoutes(passport) {
         successRedirect: "/profile",
         failureRedirect: "/login",
         failureFlash: true,
-    }), async (req, res, next) => {
-        res.redirect("/profile")
-    })
+    }))
 
     return router
 }

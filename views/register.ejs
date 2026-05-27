@@ -1,11 +1,17 @@
 <div>
     <img src="" alt="">
-    <h1>Login here</h1>
+    <h1>Register here</h1>
     <p>
-        <%= message?.error ?? "" %>
+        <% if (message?.error?.length) { %>
+            <%= message.error[0] %>
+        <% } %>
     </p>
     <div>
-        <form action="/login" method="post">
+        <form action="/register" method="post">
+            <div>
+                <label for="fullname">fullname</label>
+                <input type="text" name="fullname" id="fullname" required>
+            </div>
             <div>
                 <label for="username">username</label>
                 <input type="text" name="username" id="username" required>

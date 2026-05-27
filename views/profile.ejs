@@ -15,7 +15,7 @@
             <tbody>
                 <tr scope="row">
                     <td><%=user.id%></td>
-                    <td><%=user.fullname%></td>
+                    <td><%= user.fullName %></td>
                     <td><%=user.username%></td>
                     <td><%=user.password.substr(0,10)+"..."%></td>
                 </tr>
@@ -23,7 +23,7 @@
         </table>
     </div>
     <div>
-        <a href="/loguot">logout</a>
+        <a href="/logout">logout</a>
         <a href="/">home</a>
     </div>
 </div>
